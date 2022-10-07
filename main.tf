@@ -81,7 +81,7 @@ resource "aws_security_group" "lifebit_SG" {
 resource "aws_instance" "lifebit" {
   ami           	= "ami-0de842d2477e3b337"
   instance_type 	= "t2.micro"
-  key_name 		= aws_key_pair.lifebit.key_name
+#  key_name 		= aws_key_pair.lifebit.key_name
   security_groups	= ["${aws_security_group.lifebit_SG.id}"]
   
 #  user_data	= file('install_app.sh') # Where the entire content of the script below is defined in the "install_app.sh" file.
@@ -113,10 +113,10 @@ resource "aws_instance" "lifebit" {
   subnet_id		= "${aws_subnet.lifebit_subnet.id}"
   }
 
-resource "aws_key_pair" "lifebit" {
-  key_name			= "lifebit"
-  public_key		= "${file("${path.module}/lifebit.pub")}"
-}
+# resource "aws_key_pair" "lifebit" {
+#   key_name			= "lifebit"
+#   public_key		= "${file("${path.module}/lifebit.pub")}"
+# }
 
 
 resource "aws_eip" "lifebit_eip" {
